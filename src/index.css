@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:Verdana, Geneva, Tahoma, sans-serif;
+}
+body {
+  background-color: #e7f6ff;
+}
+.app {
+  margin: 90px;
+  border-radius: 20px;
+  background-color: #FFFFFF;
+}

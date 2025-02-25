@@ -8,6 +8,7 @@ import Group from "./icons/Group.svg?react";
 import Viver from "./icons/viver.svg?react";
 import Group5 from "./icons/Group5.svg?react";
 import Group6 from "./icons/Group6.svg?react";
+import Group7 from "./icons/Group7.svg?react";
 export const Icons = {
   Union,
   Vector,
@@ -19,4 +20,5 @@ export const Icons = {
   Viver,
   Group5,
   Group6,
+  Group7,
 };

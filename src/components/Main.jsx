@@ -1,36 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { createGlobalStyle } from "styled-components";
-import {
-  getAllSnaker,
-  postCart,
-  postFavorite,
-} from "../store/snaker/snakerThunk";
+import { postCart, getAllSnaker, postFavorite } from "../store/snaker/snakerThunk";
 import { Icons } from "../assets";
+import { createGlobalStyle } from "styled-components";
 
 export default function Main() {
   const dispatch = useDispatch();
-  const { snaker, favorite } = useSelector((state) => state.snaker);
-  console.log("snaker: ", snaker);
+  const { snaker } = useSelector((state) => state.snaker);
+  
 
   useEffect(() => {
     dispatch(getAllSnaker());
   }, [dispatch]);
 
-  const handleAddFavorite = (product) => {
-    const alreadyInCart = favorite.some((item) => item.id === product.id);
-    if (!alreadyInCart) {
-      dispatch(postFavorite(product));
-    } else {
-      alert("Бул буюм корзинада бар!");
-    }
-  };
   const handleAddCart = (product) => {
     dispatch(postCart(product));
   };
+  const handleAddFavorite = (product) => {
+    dispatch(postFavorite(product));
+  };
+
   return (
     <div style={{ padding: "60px" }}>
-      <StyleGlogal />
+      <StyleGlogal/>
       <section id="info-center">
         <div id="left-main">
           <img
@@ -54,9 +46,6 @@ export default function Main() {
       <div id="sneakers">
         <h1>Все кроссовки</h1>
         <div id="con">
-          <div className="iconGroup4">
-            <Icons.Group4 />
-          </div>
           <input type="text" placeholder="Поиск..." />
         </div>
       </div>
@@ -93,9 +82,11 @@ export default function Main() {
                   <span> руб</span>
                 </p>
               </div>
-              <div onClick={() => handleAddCart(item)}>
+              <button
+                onClick={() => handleAddCart(item)}
+              >
                 <Icons.Group2 />
-              </div>
+              </button>
             </div>
           </div>
         ))}

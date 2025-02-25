@@ -1,14 +1,13 @@
-
+import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
-import Main from "./components/Main";
-import Favorite from "./pages/Favorite";
+import Profile from "./components/Profile";
 
 const App = () => {
   return (
     <div className="app">
       <Header />
-      <Main />
-      <Favorite />
+      <Outlet />
+      {/* <Profile /> */}
     </div>
   );
 };

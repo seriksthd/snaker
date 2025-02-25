@@ -3,19 +3,15 @@ import { createGlobalStyle } from "styled-components";
 import { Icons } from "../assets";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteCart, getAllCart } from "../store/snaker/snakerThunk";
+import { deleteCart, getAllCart, getMyPurchases } from "../store/snaker/snakerThunk";
 
 export default function CartPage() {
   const dispatch = useDispatch();
-  const { cart } = useSelector((state) => state.snaker);
-  console.log("cart: ", cart);
+  const { myPurchases } = useSelector((state) => state.snaker);
+  console.log("cart: ", myPurchases);
   useEffect(() => {
-    dispatch(getAllCart());
-  }, []);
-
-  const handleDeleteCart = (id) => {
-    dispatch(deleteCart(id));
-  };
+    dispatch(getMyPurchases());
+  }, [dispatch]);
   return (
     <div>
       <StyleGlobal />
@@ -23,7 +19,7 @@ export default function CartPage() {
         <Link to="/">
           <Icons.Group5 />
         </Link>
-        <span style={{ paddingBottom: "7px" }}>Мои закладки</span>
+        <span style={{ paddingBottom: "7px" }}>Мои покупки</span>
       </h1>
       <div
         style={{
@@ -34,11 +30,10 @@ export default function CartPage() {
           alignItems: "center",
         }}
       >
-        {cart.map((item) => (
+        {myPurchases.map((item) => (
           <div className="cart" key={item.id}>
             <div
               className="continerDivSvg"
-              onClick={() => handleAddFavorite(item)}
             >
               <Icons.Vector1 />
             </div>
@@ -58,7 +53,7 @@ export default function CartPage() {
                   <span> руб</span>
                 </p>
               </div>
-              <div onClick={()=>handleDeleteCart(item.id)}>
+              <div >
                 <Icons.Group2 />
               </div>
             </div>

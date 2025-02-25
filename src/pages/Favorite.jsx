@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getAllFavorite } from "../store/snaker/snakerThunk";
+import { deleteFavorite, getAllFavorite } from "../store/snaker/snakerThunk";
 import { createGlobalStyle } from "styled-components";
 import { Icons } from "../assets";
 import { Link } from "react-router-dom";
@@ -12,6 +12,10 @@ export default function Favorite() {
   useEffect(() => {
     dispatch(getAllFavorite());
   }, []);
+    const handlerDeleteFavorite =(id)=>{
+      dispatch(deleteFavorite(id))
+    }
+  
   return (
     <div>
       <StyleGlobal />
@@ -19,7 +23,7 @@ export default function Favorite() {
         <Link to="/">
           <Icons.Group5 />
         </Link>
-        <span style={{ paddingBottom: "7px" }}>Мои покупки</span>
+        <span style={{ paddingBottom: "7px" }}>Мои закладки</span>
       </h1>
       <div
         style={{
@@ -34,7 +38,7 @@ export default function Favorite() {
           <div className="cart" key={item.id}>
             <div
               className="continerDivSvg"
-              onClick={() => handleAddFavorite(item)}
+              onClick={() => handlerDeleteFavorite(item.id)}
             >
               <Icons.Vector1 />
             </div>
